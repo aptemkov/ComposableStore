@@ -1,0 +1,58 @@
+package com.github.aptemkov.onlinestore.presentation
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.github.aptemkov.onlinestore.ui.theme.OnlineStoreTheme
+
+@Composable
+@Preview
+fun LogInScreenPreview() {
+    LogInScreen(
+        onLogInClicked = {},
+        onSignInClicked = {},
+    )
+}
+
+@Composable
+fun LogInScreen(
+    onLogInClicked: () -> Unit,
+    onSignInClicked: () -> Unit,
+) {
+    OnlineStoreTheme {
+        MaterialTheme {
+            Surface {
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(color = Color(0xffF5F5F5))
+                        .wrapContentSize(align = Alignment.Center)
+                        .padding(all = 48.dp)
+
+                ) {
+                    HeadlineAuth(text = "Welcome back")
+                    EditTextAuth(placeHolder = "Email")
+                    EditPasswordAuth(placeHolder = "Password")
+                    ButtonAuth(text = "Log in",onClick = onLogInClicked)
+                    HintUnderButtonAuth(
+                        text1 = "Don't have an account?",
+                        text2 = "Sign in",
+                        onClick = onSignInClicked
+                    )
+                    SignInWithGoogleApple()
+                }
+            }
+
+        }
+    }
+}

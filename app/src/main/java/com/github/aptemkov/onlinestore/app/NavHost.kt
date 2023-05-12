@@ -1,12 +1,12 @@
-package com.github.aptemkov.onlinestore
+package com.github.aptemkov.onlinestore.app
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.github.aptemkov.onlinestore.presentation.LogInScreen
-import com.github.aptemkov.onlinestore.presentation.SignInScreen
+import com.github.aptemkov.onlinestore.app.presentation.LogInScreen
+import com.github.aptemkov.onlinestore.app.presentation.SignInScreen
 
 @Composable
 fun AppNavHost(

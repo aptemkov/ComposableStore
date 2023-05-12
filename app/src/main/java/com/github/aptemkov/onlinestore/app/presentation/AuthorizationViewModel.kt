@@ -1,0 +1,38 @@
+package com.github.aptemkov.onlinestore.app.presentation
+
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.github.aptemkov.onlinestore.domain.models.Response
+import com.github.aptemkov.onlinestore.domain.models.Response.Loading
+import com.github.aptemkov.onlinestore.domain.models.Response.Success
+import com.github.aptemkov.onlinestore.domain.repository.AuthorizationRepository
+import com.github.aptemkov.onlinestore.domain.repository.SendEmailVerificationResponse
+import com.github.aptemkov.onlinestore.domain.repository.SignUpResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+@HiltViewModel
+class AuthorizationViewModel @Inject constructor(
+    private val repository: AuthorizationRepository
+) : ViewModel() {
+
+    var signUpResponse by mutableStateOf<SignUpResponse>(Success(false))
+        private set
+    var sendEmailVerificationResponse by mutableStateOf<SendEmailVerificationResponse>(Success(false))
+        private set
+
+    fun signUpWithEmailAndPassword(email: String, password: String) = viewModelScope.launch {
+        signUpResponse = Loading
+        signUpResponse = repository.firebaseSignUpWithEmailAndPassword(email, password)
+    }
+
+    fun sendEmailVerification() = viewModelScope.launch {
+        sendEmailVerificationResponse = Loading
+        sendEmailVerificationResponse = repository.sendEmailVerification()
+    }
+
+}

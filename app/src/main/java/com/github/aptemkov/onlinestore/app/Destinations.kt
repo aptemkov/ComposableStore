@@ -1,4 +1,4 @@
-package com.github.aptemkov.onlinestore
+package com.github.aptemkov.onlinestore.app
 
 import androidx.compose.ui.graphics.vector.ImageVector
 

@@ -1,5 +1,6 @@
-package com.github.aptemkov.onlinestore.presentation
+package com.github.aptemkov.onlinestore.app.presentation
 
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -24,6 +25,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -40,7 +42,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.github.aptemkov.onlinestore.R
+import com.github.aptemkov.onlinestore.domain.models.Response
 import com.github.aptemkov.onlinestore.ui.theme.OnlineStoreTheme
 import com.github.aptemkov.onlinestore.ui.theme.monserrat
 
@@ -50,14 +54,33 @@ fun SignInScreenPreview() {
     SignInScreen(
         onSignInClicked = {},
         onLogInClicked = {},
-        )
+    )
 }
 
 @Composable
 fun SignInScreen(
     onSignInClicked: () -> Unit,
     onLogInClicked: () -> Unit,
+    viewModel: AuthorizationViewModel = hiltViewModel()
 ) {
+
+    val response = viewModel.signUpResponse
+    LaunchedEffect(response) {
+        if (response is Response.Failure)
+            Log.i("TEST_AUTH", "${response.e.message}")
+    }
+
+    var firstName by rememberSaveable() {
+        mutableStateOf("")
+    }
+
+    var email by rememberSaveable() {
+        mutableStateOf("")
+    }
+    var password by rememberSaveable() {
+        mutableStateOf("")
+    }
+
     OnlineStoreTheme {
         MaterialTheme {
             Surface {
@@ -70,14 +93,19 @@ fun SignInScreen(
 
                 ) {
                     HeadlineAuth(text = "Sign in")
-                    EditTextAuth(placeHolder = "First name")
-                    EditTextAuth(placeHolder = "Email")
-                    EditPasswordAuth(placeHolder = "Password")
-                    ButtonAuth(text = "Sign in", onClick = onSignInClicked)
+                    EditTextAuth(placeHolder = "First name", onValueChange = { firstName = it })
+                    EditTextAuth(placeHolder = "Email", onValueChange = { email = it })
+                    EditPasswordAuth(placeHolder = "Password", onValueChange = { password = it })
+                    ButtonAuth(text = "Sign in",
+                        onClick = {
+                            onSignInClicked()
+                            viewModel.signUpWithEmailAndPassword(email, password)
+                        })
                     HintUnderButtonAuth(
                         text1 = "Already have an account?",
                         text2 = "Log in",
-                        onClick = onLogInClicked)
+                        onClick = onLogInClicked
+                    )
                     SignInWithGoogleApple()
                 }
             }
@@ -219,12 +247,17 @@ fun HeadlineAuth(modifier: Modifier = Modifier, text: String) {
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-fun EditTextAuth(placeHolder: String = "", modifier: Modifier = Modifier) {
+fun EditTextAuth(
+    placeHolder: String = "",
+    modifier: Modifier = Modifier,
+    onValueChange: (String) -> Unit
+) {
     var text by rememberSaveable { mutableStateOf("") }
+
     TextField(
         shape = MaterialTheme.shapes.medium.copy(all = CornerSize(15.dp)),
         value = text,
-        onValueChange = { text = it },
+        onValueChange = { text = it; onValueChange(it) },
         placeholder = {
             Text(
                 text = placeHolder,
@@ -253,13 +286,17 @@ fun EditTextAuth(placeHolder: String = "", modifier: Modifier = Modifier) {
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 
-fun EditPasswordAuth(placeHolder: String = "", modifier: Modifier = Modifier) {
+fun EditPasswordAuth(
+    placeHolder: String = "",
+    modifier: Modifier = Modifier,
+    onValueChange: (String) -> Unit
+) {
     var text by rememberSaveable { mutableStateOf("") }
     var visibility by rememberSaveable { mutableStateOf(false) }
     TextField(
         shape = MaterialTheme.shapes.medium.copy(all = CornerSize(15.dp)),
         value = text,
-        onValueChange = { text = it },
+        onValueChange = { text = it; onValueChange(it) },
         placeholder = {
             Text(
                 text = placeHolder,
@@ -305,5 +342,5 @@ fun EditPasswordAuth(placeHolder: String = "", modifier: Modifier = Modifier) {
 @Composable
 @Preview()
 fun EditPasswordAuthPreview() {
-    EditPasswordAuth(placeHolder = "Password")
+    EditPasswordAuth(placeHolder = "Password", onValueChange = {})
 }

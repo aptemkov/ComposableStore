@@ -1,4 +1,4 @@
-package com.github.aptemkov.onlinestore.presentation
+package com.github.aptemkov.onlinestore.app.presentation
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -8,6 +8,10 @@ import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,6 +33,14 @@ fun LogInScreen(
     onLogInClicked: () -> Unit,
     onSignInClicked: () -> Unit,
 ) {
+
+    var email by rememberSaveable() {
+        mutableStateOf("")
+    }
+    var password by rememberSaveable() {
+        mutableStateOf("")
+    }
+
     OnlineStoreTheme {
         MaterialTheme {
             Surface {
@@ -41,8 +53,8 @@ fun LogInScreen(
 
                 ) {
                     HeadlineAuth(text = "Welcome back")
-                    EditTextAuth(placeHolder = "Email")
-                    EditPasswordAuth(placeHolder = "Password")
+                    EditTextAuth(placeHolder = "Email", onValueChange =  { email = it; println("email $it") })
+                    EditPasswordAuth(placeHolder = "Password", onValueChange =  { password = it; println("password $it") })
                     ButtonAuth(text = "Log in",onClick = onLogInClicked)
                     HintUnderButtonAuth(
                         text1 = "Don't have an account?",

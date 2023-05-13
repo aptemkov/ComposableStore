@@ -6,11 +6,18 @@ interface Destination {
     val icon: ImageVector?
     val route: String
 }
-    object LogInDestination : Destination {
-        override val icon = null
-        override val route = "log_in"
-    }
-    object SignInDestination : Destination {
-        override val icon = null
-        override val route = "sign_in"
-    }
+
+object LogInDestination : Destination {
+    override val icon = null
+    override val route = "log_in"
+}
+
+object SignInDestination : Destination {
+    override val icon = null
+    override val route = "sign_in"
+}
+
+object HomePageDestination : Destination {
+    override val icon = null
+    override val route = "home_page"
+}

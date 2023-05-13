@@ -14,7 +14,7 @@
         android:theme="@style/Theme.OnlineStore"
         tools:targetApi="31">
         <activity
-            android:name=".app.MainActivity"
+            android:name=".app.presentation.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.OnlineStore">

@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.github.aptemkov.onlinestore.app.presentation.HomePageScreen
 import com.github.aptemkov.onlinestore.app.presentation.LogInScreen
 import com.github.aptemkov.onlinestore.app.presentation.SignInScreen
 
@@ -29,6 +30,10 @@ fun AppNavHost(
                 onSignInClicked = { println("Sign in pressed") },
                 onLogInClicked = { navController.navigateSingleTopTo(LogInDestination.route) }
             )
+        }
+
+        composable(route = HomePageDestination.route) {
+            HomePageScreen()
         }
     }
 }

@@ -10,6 +10,7 @@ import com.github.aptemkov.onlinestore.domain.models.Response.Loading
 import com.github.aptemkov.onlinestore.domain.models.Response.Success
 import com.github.aptemkov.onlinestore.domain.repository.AuthorizationRepository
 import com.github.aptemkov.onlinestore.domain.repository.SendEmailVerificationResponse
+import com.github.aptemkov.onlinestore.domain.repository.SignInResponse
 import com.github.aptemkov.onlinestore.domain.repository.SignUpResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -24,7 +25,13 @@ class AuthorizationViewModel @Inject constructor(
         private set
     var sendEmailVerificationResponse by mutableStateOf<SendEmailVerificationResponse>(Success(false))
         private set
+    var signInResponse by mutableStateOf<SignInResponse>(Success(false))
+        private set
 
+    fun signInWithEmailAndPassword(email: String, password: String) = viewModelScope.launch {
+        signInResponse = Loading
+        signInResponse = repository.firebaseSignInWithEmailAndPassword(email, password)
+    }
     fun signUpWithEmailAndPassword(email: String, password: String) = viewModelScope.launch {
         signUpResponse = Loading
         signUpResponse = repository.firebaseSignUpWithEmailAndPassword(email, password)

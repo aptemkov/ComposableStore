@@ -20,6 +20,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarData
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -28,6 +31,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -45,8 +50,11 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.github.aptemkov.onlinestore.R
 import com.github.aptemkov.onlinestore.domain.models.Response
+import com.github.aptemkov.onlinestore.domain.models.Response.Failure
+import com.github.aptemkov.onlinestore.domain.models.Response.Success
 import com.github.aptemkov.onlinestore.ui.theme.OnlineStoreTheme
 import com.github.aptemkov.onlinestore.ui.theme.monserrat
+import kotlinx.coroutines.launch
 
 @Composable
 @Preview
@@ -66,8 +74,9 @@ fun SignInScreen(
 
     val response = viewModel.signUpResponse
     LaunchedEffect(response) {
-        if (response is Response.Failure)
-            Log.i("TEST_AUTH", "${response.e.message}")
+        if (response is Failure) {
+            Log.i("TEST_AUTH", "Register fail: ${response.e.message}")
+        }
     }
 
     var firstName by rememberSaveable() {

@@ -1,4 +1,4 @@
-package com.github.aptemkov.onlinestore.app.presentation
+package com.github.aptemkov.onlinestore.app.presentation.authorization
 
 import android.util.Log
 import androidx.compose.foundation.background
@@ -65,8 +65,8 @@ fun LogInScreen(
 
                 ) {
                     HeadlineAuth(text = "Welcome back")
-                    EditTextAuth(placeHolder = "Email", onValueChange =  { email = it; println("email $it") })
-                    EditPasswordAuth(placeHolder = "Password", onValueChange =  { password = it; println("password $it") })
+                    EditTextAuth(placeHolder = "Email", onValueChange =  { email = it.trim() })
+                    EditPasswordAuth(placeHolder = "Password", onValueChange =  { password = it })
                     ButtonAuth(
                         text = "Log in",
                         onClick = {

@@ -5,9 +5,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.github.aptemkov.onlinestore.app.presentation.HomePageScreen
-import com.github.aptemkov.onlinestore.app.presentation.LogInScreen
-import com.github.aptemkov.onlinestore.app.presentation.SignInScreen
+import com.github.aptemkov.onlinestore.app.presentation.authorization.LogInScreen
+import com.github.aptemkov.onlinestore.app.presentation.authorization.SignInScreen
+import com.github.aptemkov.onlinestore.app.presentation.main.MainScreen
 
 @Composable
 fun AppNavHost(
@@ -32,8 +32,8 @@ fun AppNavHost(
             )
         }
 
-        composable(route = HomePageDestination.route) {
-            HomePageScreen()
+        composable(route = MainPageDestination.route) {
+            MainScreen()
         }
     }
 }

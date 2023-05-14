@@ -1,4 +1,4 @@
-package com.github.aptemkov.onlinestore.app.presentation
+package com.github.aptemkov.onlinestore.app.presentation.authorization
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,8 +38,10 @@ class AuthorizationViewModel @Inject constructor(
     }
 
     fun sendEmailVerification() = viewModelScope.launch {
-        sendEmailVerificationResponse = Loading
-        sendEmailVerificationResponse = repository.sendEmailVerification()
+        if(repository.currentUser?.isEmailVerified == false) {
+            sendEmailVerificationResponse = Loading
+            sendEmailVerificationResponse = repository.sendEmailVerification()
+        }
     }
 
 }

@@ -17,7 +17,7 @@ object SignInDestination : Destination {
     override val route = "sign_in"
 }
 
-object HomePageDestination : Destination {
+object MainPageDestination : Destination {
     override val icon = null
-    override val route = "home_page"
+    override val route = "main"
 }

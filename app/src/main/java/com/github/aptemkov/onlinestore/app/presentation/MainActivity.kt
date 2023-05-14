@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.Text
@@ -14,12 +15,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.github.aptemkov.onlinestore.app.AppNavHost
-import com.github.aptemkov.onlinestore.app.HomePageDestination
 import com.github.aptemkov.onlinestore.app.LogInDestination
+import com.github.aptemkov.onlinestore.app.MainPageDestination
 import com.github.aptemkov.onlinestore.ui.theme.OnlineStoreTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,6 +35,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            window.statusBarColor = Color.White.toArgb()
 
             navController = rememberNavController()
 
@@ -53,15 +57,14 @@ class MainActivity : ComponentActivity() {
         } else {
             Log.i("TEST_AUTH", "is signed in")
             if (viewModel.isEmailVerified) {
-                Snackbar() {
-                    Text("Email verified")
-                }
                 NavigateToApp()
             } else {
+                viewModel.sendEmailVerification()
                 Snackbar {
                     Text("Please, verify email")
                 }
                 NavigateToApp()
+                //MainScreen()
             }
         }
     }
@@ -74,7 +77,7 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun NavigateToApp() = navController.navigate(HomePageDestination.route) {
+    private fun NavigateToApp() = navController.navigate(MainPageDestination.route) {
         popUpTo(navController.graph.id) {
             inclusive = true
         }

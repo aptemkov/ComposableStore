@@ -24,7 +24,7 @@ fun FavouritePageScreen(
                 Box(
                     modifier = Modifier
                         .fillMaxSize()
-                        .background(color = Color(0xffF5F5F5))
+                        .background(color = Color(0xffFAF9FF))
                         .wrapContentSize(align = Alignment.Center)
                         .padding(all = 48.dp),
                     contentAlignment = Alignment.Center

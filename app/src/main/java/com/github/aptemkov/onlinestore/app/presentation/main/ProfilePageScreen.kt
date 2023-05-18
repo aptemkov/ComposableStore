@@ -54,19 +54,19 @@ fun ProfilePageScreen() {
     OnlineStoreTheme {
         MaterialTheme {
             Scaffold(
-                modifier = Modifier.background(color = Color(0xffFAF9FF)),
                 topBar = {
                     DefaultTopAppBar(
-                        showStartIcon = true,
+                        showStartIcon = false,
                         startIcon = painterResource(id = R.drawable.arrow_back),
-                        label = "Profile"
+                        label = "Profile",
                     )
                 }
             ) { padding ->
                 Column(
                     modifier = Modifier
+                        .background(color = Color(0xffFAF9FF))
                         .fillMaxSize()
-                        .padding(horizontal = 32.dp),
+                        .padding(start = 32.dp, end = 32.dp, top = 56.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
 
                     ) {
@@ -234,7 +234,8 @@ fun ProfileButton(
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
             ),
-            modifier = Modifier.align(Alignment.CenterVertically),
+            modifier = Modifier
+                .align(Alignment.CenterVertically),
         )
 
         Spacer(Modifier.weight(1f))
@@ -252,7 +253,8 @@ fun ProfileButton(
             Text(
                 text = endLabel,
                 modifier = Modifier
-                    .align(Alignment.CenterVertically),
+                    .align(Alignment.CenterVertically)
+                    .padding(end = 16.dp),
             )
         }
 

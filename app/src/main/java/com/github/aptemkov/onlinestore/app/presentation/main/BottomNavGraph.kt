@@ -1,10 +1,10 @@
 package com.github.aptemkov.onlinestore.app.presentation.main
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.NavHost
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.NavHostController
+import com.github.aptemkov.onlinestore.app.presentation.main.home.HomePageScreen
 
 @Composable
 fun BottomNavGraph(navController: NavHostController) {

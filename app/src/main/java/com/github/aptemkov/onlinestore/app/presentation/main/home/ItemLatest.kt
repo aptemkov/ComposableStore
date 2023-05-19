@@ -70,8 +70,8 @@ fun ItemLatest(
 
         AddButtonInLatest(
             modifier = Modifier
-                .align(Alignment.BottomEnd)
-                .clickable { onAddClicked() }
+                .align(Alignment.BottomEnd),
+            onClick = { onAddClicked() }
         )
     }
 }
@@ -121,13 +121,14 @@ fun ItemPrice(price: String) {
 }
 
 @Composable
-fun AddButtonInLatest(modifier: Modifier = Modifier) {
+fun AddButtonInLatest(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Box(
         modifier
             .padding(end = 8.dp, bottom = 8.dp)
             .clip(shape = RoundedCornerShape(9.dp))
             .size(20.dp)
-            .background(Color(0xffE5E9EF).copy(alpha = 0.85f)),
+            .background(Color(0xffE5E9EF).copy(alpha = 0.85f))
+            .clickable { onClick() },
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_add),

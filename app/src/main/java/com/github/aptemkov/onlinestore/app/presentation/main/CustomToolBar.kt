@@ -22,11 +22,15 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.github.aptemkov.onlinestore.R
 
 @Preview
@@ -83,13 +87,28 @@ fun DefaultTopAppBar(
                         .fillMaxSize(),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(
+                    /*Text(
                         fontWeight = FontWeight.Bold,
                         text = label,
                         color = Color.Black,
                         textAlign = TextAlign.Center,
                         modifier = Modifier
                             .weight(1f)
+                    )*/
+                    Text(
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.weight(1f),
+                        text = buildAnnotatedString {
+                            withStyle(style = SpanStyle(
+                                color = Color.Black,
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold)
+                            ) { append("Trade by ") }
+                            withStyle(style = SpanStyle(
+                                color = Color(0xff4e55d7),
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Bold)) { append("aptemkov")}
+                        }
                     )
                 }
             },

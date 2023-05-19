@@ -78,8 +78,8 @@ fun ItemFlashSale(
             modifier = Modifier.align(Alignment.BottomEnd),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            LikeButton(modifier = Modifier.clickable { onLikeClicked() })
-            AddButton(modifier = Modifier.clickable { onAddClicked() })
+            LikeButton(modifier = Modifier, onClick = { onLikeClicked() })
+            AddButton(modifier = Modifier, onClick =  { onAddClicked() })
         }
 
     }
@@ -149,13 +149,14 @@ fun ItemPriceFlashSale(price: String) {
 }
 
 @Composable
-fun AddButton(modifier: Modifier = Modifier) {
+fun AddButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Box(
         modifier
             .padding(end = 8.dp, bottom = 8.dp)
             .clip(shape = RoundedCornerShape(18.dp))
             .size(36.dp)
-            .background(Color(0xffE5E9EF).copy(alpha = 0.85f)),
+            .background(Color(0xffE5E9EF).copy(alpha = 0.85f))
+            .clickable { onClick() },
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_add),
@@ -170,13 +171,14 @@ fun AddButton(modifier: Modifier = Modifier) {
 }
 
 @Composable
-fun LikeButton(modifier: Modifier = Modifier) {
+fun LikeButton(modifier: Modifier = Modifier, onClick: () -> Unit) {
     Box(
         modifier
             .padding(end = 8.dp, bottom = 8.dp)
             .clip(shape = RoundedCornerShape(14.dp))
             .size(28.dp)
-            .background(Color(0xffE5E9EF).copy(alpha = 0.85f)),
+            .background(Color(0xffE5E9EF).copy(alpha = 0.85f))
+            .clickable { onClick() },
     ) {
         Icon(
             painter = painterResource(id = R.drawable.ic_favourite),

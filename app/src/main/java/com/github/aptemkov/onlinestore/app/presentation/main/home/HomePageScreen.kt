@@ -26,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -42,20 +43,26 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.rememberAsyncImagePainter
 import com.github.aptemkov.onlinestore.R
 import com.github.aptemkov.onlinestore.app.presentation.main.DefaultTopAppBar
+import com.github.aptemkov.onlinestore.domain.models.FlashSaleItem
 import com.github.aptemkov.onlinestore.domain.models.FlashSaleItemData
-import com.github.aptemkov.onlinestore.domain.models.LatestItemData
+import com.github.aptemkov.onlinestore.domain.models.LatestItem
 import com.github.aptemkov.onlinestore.domain.models.categories
 import com.github.aptemkov.onlinestore.domain.models.flashSaleList
-import com.github.aptemkov.onlinestore.domain.models.latest
 import com.github.aptemkov.onlinestore.ui.theme.OnlineStoreTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun HomePageScreen(
+    viewModel: HomeViewModel = hiltViewModel()
 ) {
+    val latest by viewModel.latest.collectAsState()
+    val flashSale by viewModel.flashSale.collectAsState()
+
     OnlineStoreTheme {
         MaterialTheme {
             Scaffold(
@@ -98,7 +105,7 @@ fun HomePageScreen(
                     }
 
                     LatestSection(list = latest, onViewAllClicked = {})
-                    FlashSaleSection(list = flashSaleList, onViewAllClicked = {})
+                    FlashSaleSection(list = flashSale, onViewAllClicked = {})
                 }
             }
         }
@@ -107,7 +114,7 @@ fun HomePageScreen(
 
 
 @Composable
-fun FlashSaleSection(list: List<FlashSaleItemData>, onViewAllClicked:() -> Unit ) {
+fun FlashSaleSection(list: List<FlashSaleItem>, onViewAllClicked:() -> Unit ) {
     Column {
         Row(
             Modifier
@@ -143,10 +150,11 @@ fun FlashSaleSection(list: List<FlashSaleItemData>, onViewAllClicked:() -> Unit 
         ) {
             items(list) {
                 ItemFlashSale(
-                    itemPhoto = painterResource(id = it.itemPhoto),
+                    itemPhoto = rememberAsyncImagePainter(it.image_url),
                     category = it.category,
-                    itemName = it.itemName,
-                    itemPrice = it.itemPrice,
+                    itemName = it.name,
+                    itemPrice = it.price,
+                    percent = it.discount,
                     onAddClicked = {},
                     onLikeClicked = {}
                 )
@@ -156,7 +164,7 @@ fun FlashSaleSection(list: List<FlashSaleItemData>, onViewAllClicked:() -> Unit 
 }
 
 @Composable
-fun LatestSection(list: List<LatestItemData>, onViewAllClicked: () -> Unit) {
+fun LatestSection(list: List<LatestItem>, onViewAllClicked: () -> Unit) {
     Column {
         Row(
             Modifier
@@ -192,10 +200,10 @@ fun LatestSection(list: List<LatestItemData>, onViewAllClicked: () -> Unit) {
         ) {
             items(list) {
                 ItemLatest(
-                    itemPhoto = painterResource(id = it.itemPhoto),
+                    itemPhoto = rememberAsyncImagePainter(it.image_url),
                     category = it.category,
-                    itemName = it.itemName,
-                    itemPrice = it.itemPrice,
+                    itemName = it.name,
+                    itemPrice = it.price,
                     onAddClicked = {}
                 )
             }

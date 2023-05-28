@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.github.aptemkov.onlinestore.R
 import com.github.aptemkov.onlinestore.app.presentation.authorization.ButtonAuth
-import com.github.aptemkov.onlinestore.data.AuthorizationRepositoryImpl
+import com.github.aptemkov.onlinestore.data.repository.AuthorizationRepositoryImpl
 import com.github.aptemkov.onlinestore.ui.theme.OnlineStoreTheme
 import com.google.firebase.auth.FirebaseAuth
 

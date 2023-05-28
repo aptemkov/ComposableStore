@@ -1,4 +1,4 @@
-package com.github.aptemkov.onlinestore.data
+package com.github.aptemkov.onlinestore.data.repository
 
 import android.util.Log
 import com.github.aptemkov.onlinestore.domain.models.Response

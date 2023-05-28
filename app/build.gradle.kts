@@ -85,4 +85,14 @@ dependencies {
     implementation ("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.27.0")
+
+    implementation ("com.squareup.moshi:moshi-kotlin:1.9.3")
+    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("io.coil-kt:coil:2.3.0")
+
+    implementation("io.coil-kt:coil-compose:2.4.0")
+
+
 }

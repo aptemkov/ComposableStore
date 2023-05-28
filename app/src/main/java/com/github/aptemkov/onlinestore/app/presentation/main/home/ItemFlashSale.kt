@@ -39,6 +39,7 @@ fun ItemFlashSalePreview() {
         category = "Kids",
         itemName = "New balance sneakers",
         itemPrice = "$180,000",
+        percent = "30",
         onLikeClicked = {},
         onAddClicked = {}
     )
@@ -46,7 +47,7 @@ fun ItemFlashSalePreview() {
 
 @Composable
 fun ItemFlashSale(
-    itemPhoto: Painter, category: String, itemName: String, itemPrice: String,
+    itemPhoto: Painter, category: String, itemName: String, itemPrice: String, percent: String,
     onLikeClicked: () -> Unit, onAddClicked: () -> Unit) {
     Box {
         Image(
@@ -72,7 +73,8 @@ fun ItemFlashSale(
         SaleLogo(
             modifier = Modifier
                 .align(Alignment.TopEnd)
-                .padding(end = 8.dp, top = 8.dp)
+                .padding(end = 8.dp, top = 8.dp),
+            percent = percent
         )
         Row(
             modifier = Modifier.align(Alignment.BottomEnd),
@@ -86,7 +88,7 @@ fun ItemFlashSale(
 }
 
 @Composable
-fun SaleLogo(modifier: Modifier = Modifier) {
+fun SaleLogo(modifier: Modifier = Modifier, percent: String) {
     Box(
         modifier = modifier
             .clip(RoundedCornerShape(6.dp))
@@ -95,7 +97,7 @@ fun SaleLogo(modifier: Modifier = Modifier) {
             .background(color = Color(0xffF93A3A))
     ) {
         Text(
-            text = "30% off",
+            text = "$percent% off",
             color = Color.White,
             textAlign = TextAlign.Center,
             style = TextStyle(

@@ -23,10 +23,10 @@ class HomeViewModel @Inject constructor(
     private val repositoryDa: DataRepository
 ): ViewModel() {
 
-    private val _latest = MutableStateFlow<List<LatestItem>>(listOf())
+    private val _latest = MutableStateFlow<List<LatestItem>>(listOf(LatestItem("","","","")))
     val latest = _latest.asStateFlow()
 
-    private val _flashSale = MutableStateFlow<List<FlashSaleItem>>(listOf())
+    private val _flashSale = MutableStateFlow<List<FlashSaleItem>>(listOf(FlashSaleItem("","","","0","")))
     val flashSale = _flashSale.asStateFlow()
 
     init {

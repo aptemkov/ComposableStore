@@ -25,6 +25,8 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.github.aptemkov.onlinestore.app.presentation.main.bottombar.BottomBarScreen
+import com.github.aptemkov.onlinestore.app.presentation.main.bottombar.BottomNavGraph
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")

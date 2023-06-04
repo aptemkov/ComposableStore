@@ -1,4 +1,4 @@
-package com.github.aptemkov.onlinestore.app.presentation.main
+package com.github.aptemkov.onlinestore.app.presentation.main.chat
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box

@@ -5,9 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.aptemkov.onlinestore.domain.models.Response
-import com.github.aptemkov.onlinestore.domain.models.Response.Loading
 import com.github.aptemkov.onlinestore.domain.models.Response.Success
+import com.github.aptemkov.onlinestore.domain.models.Response.Failure
+import com.github.aptemkov.onlinestore.domain.models.Response.Loading
 import com.github.aptemkov.onlinestore.domain.repository.AuthorizationRepository
 import com.github.aptemkov.onlinestore.domain.repository.SendEmailVerificationResponse
 import com.github.aptemkov.onlinestore.domain.repository.SignInResponse
@@ -43,5 +43,7 @@ class AuthorizationViewModel @Inject constructor(
             sendEmailVerificationResponse = repository.sendEmailVerification()
         }
     }
+
+    val isEmailVerified get() = repository.currentUser?.isEmailVerified ?: false
 
 }

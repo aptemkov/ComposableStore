@@ -47,11 +47,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import com.github.aptemkov.onlinestore.R
 import com.github.aptemkov.onlinestore.app.presentation.main.DefaultTopAppBar
-import com.github.aptemkov.onlinestore.domain.models.FlashSaleItem
-import com.github.aptemkov.onlinestore.domain.models.FlashSaleItemData
-import com.github.aptemkov.onlinestore.domain.models.LatestItem
-import com.github.aptemkov.onlinestore.domain.models.categories
-import com.github.aptemkov.onlinestore.domain.models.flashSaleList
+import com.github.aptemkov.onlinestore.data.models.FlashSaleItem
+import com.github.aptemkov.onlinestore.data.models.LatestItem
+import com.github.aptemkov.onlinestore.app.presentation.models.categories
 import com.github.aptemkov.onlinestore.ui.theme.OnlineStoreTheme
 
 @OptIn(ExperimentalMaterial3Api::class)

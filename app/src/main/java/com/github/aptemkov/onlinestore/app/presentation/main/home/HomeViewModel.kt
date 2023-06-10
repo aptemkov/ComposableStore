@@ -4,10 +4,12 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.aptemkov.onlinestore.app.HOME_VIEW_MODEL
-import com.github.aptemkov.onlinestore.domain.models.FlashSaleItem
-import com.github.aptemkov.onlinestore.domain.models.FlashSaleItemList
-import com.github.aptemkov.onlinestore.domain.models.LatestItem
-import com.github.aptemkov.onlinestore.domain.models.LatestItemList
+import com.github.aptemkov.onlinestore.data.models.FlashSaleItem
+import com.github.aptemkov.onlinestore.data.models.FlashSaleItemList
+import com.github.aptemkov.onlinestore.data.models.LatestItem
+import com.github.aptemkov.onlinestore.data.models.LatestItemList
+import com.github.aptemkov.onlinestore.domain.models.FlashSaleItemListDomain
+import com.github.aptemkov.onlinestore.domain.models.LatestItemListDomain
 import com.github.aptemkov.onlinestore.domain.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

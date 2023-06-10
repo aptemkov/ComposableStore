@@ -1,35 +1,40 @@
-package com.github.aptemkov.onlinestore.domain.models
+package com.github.aptemkov.onlinestore.app.presentation.models
 
 import com.github.aptemkov.onlinestore.R
 
-data class LatestItemData(
+data class FlashSaleItemData(
     val itemPhoto: Int,
     val category: String,
     val itemName: String,
     val itemPrice: String,
+    val onLikeClicked: () -> Unit,
     val onAddClicked: () -> Unit,
 )
 
-val latest = listOf(
-    LatestItemData(
+val flashSaleList = listOf(
+    FlashSaleItemData(
         itemPhoto = R.drawable.ic_launcher_background,
-        category = "Phones",
-        itemName = "Samsung S10",
+        category = "Kids",
+        itemName = "New balance sneakers",
         itemPrice = "$180,000",
+        onLikeClicked = {},
         onAddClicked = {}
     ),
-    LatestItemData(
+    FlashSaleItemData(
         itemPhoto = R.drawable.ic_launcher_background,
-        category = "Phones",
-        itemName = "Samsung S10",
+        category = "Kids",
+        itemName = "New balance sneakers",
         itemPrice = "$180,000",
+        onLikeClicked = {},
         onAddClicked = {}
     ),
-    LatestItemData(
+    FlashSaleItemData(
         itemPhoto = R.drawable.ic_launcher_background,
-        category = "Phones",
-        itemName = "Samsung S10",
+        category = "Kids",
+        itemName = "New balance sneakers",
         itemPrice = "$180,000",
+        onLikeClicked = {},
         onAddClicked = {}
-    )
+    ),
+
 )

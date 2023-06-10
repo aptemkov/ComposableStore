@@ -1,8 +1,10 @@
 package com.github.aptemkov.onlinestore.data.repository
 
-import com.github.aptemkov.onlinestore.domain.models.FlashSaleItemList
-import com.github.aptemkov.onlinestore.domain.models.LatestItemList
+import com.github.aptemkov.onlinestore.data.models.FlashSaleItemList
+import com.github.aptemkov.onlinestore.data.models.LatestItemList
 import com.github.aptemkov.onlinestore.data.api.StoreApiService
+import com.github.aptemkov.onlinestore.domain.models.FlashSaleItemListDomain
+import com.github.aptemkov.onlinestore.domain.models.LatestItemListDomain
 import com.github.aptemkov.onlinestore.domain.repository.DataRepository
 import retrofit2.Call
 import javax.inject.Inject
@@ -14,6 +16,7 @@ class DataRepositoryImpl @Inject constructor(
 ): DataRepository {
 
     override fun getLatestList(): Call<LatestItemList> {
+        val a = apiService.getLatestCall()
         return apiService.getLatestCall()
     }
 

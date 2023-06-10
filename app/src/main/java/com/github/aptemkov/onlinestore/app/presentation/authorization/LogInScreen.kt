@@ -23,7 +23,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.github.aptemkov.onlinestore.app.TEST_AUTH
-import com.github.aptemkov.onlinestore.domain.models.Response
+import com.github.aptemkov.onlinestore.domain.models.Response.Failure
+import com.github.aptemkov.onlinestore.domain.models.Response.Success
 import kotlinx.coroutines.launch
 
 @Composable
@@ -51,7 +52,7 @@ fun LogInScreen(
 
     val response = viewModel.signInResponse
     LaunchedEffect(response) {
-        if (response is Response.Failure) {
+        if (response is Failure) {
             Log.i(TEST_AUTH, "Log in failure: ${response.e.message}")
             isError = true
             errorMessage = response.e.message
@@ -90,6 +91,12 @@ fun LogInScreen(
                             errorMessage?.let { message ->
                                 scaffoldState.snackbarHostState.showSnackbar(message)
                             }
+                        /*
+                        if(!viewModel.isEmailVerified) {
+                            viewModel.sendEmailVerification()
+                            scaffoldState.snackbarHostState.showSnackbar("Please, verify email")
+                        }
+                        */
                     }
 
                 }

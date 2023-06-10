@@ -1,4 +1,4 @@
-package com.github.aptemkov.onlinestore.domain.models
+package com.github.aptemkov.onlinestore.app.presentation.models
 
 import com.github.aptemkov.onlinestore.R
 

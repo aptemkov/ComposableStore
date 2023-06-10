@@ -2,8 +2,9 @@ package com.github.aptemkov.onlinestore.data.repository
 
 import android.util.Log
 import com.github.aptemkov.onlinestore.domain.models.Response
-import com.github.aptemkov.onlinestore.domain.models.Response.Failure
 import com.github.aptemkov.onlinestore.domain.models.Response.Success
+import com.github.aptemkov.onlinestore.domain.models.Response.Failure
+import com.github.aptemkov.onlinestore.domain.models.Response.Loading
 import com.github.aptemkov.onlinestore.domain.repository.AuthorizationRepository
 import com.github.aptemkov.onlinestore.domain.repository.ReloadUserResponse
 import com.github.aptemkov.onlinestore.domain.repository.RevokeAccessResponse

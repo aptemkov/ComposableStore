@@ -2,7 +2,6 @@ package com.github.aptemkov.onlinestore.app.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.aptemkov.onlinestore.domain.models.Response
 import com.github.aptemkov.onlinestore.domain.repository.AuthorizationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch

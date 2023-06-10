@@ -2,6 +2,7 @@ package com.github.aptemkov.onlinestore.app.presentation
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -66,9 +67,7 @@ class MainActivity : ComponentActivity() {
                 NavigateToApp()
             } else {
                 viewModel.sendEmailVerification()
-                Snackbar {
-                    Text("Please, verify emaiЫl")
-                }
+                Toast.makeText(this, "Please, verify email", Toast.LENGTH_LONG).show()
                 NavigateToApp()
                 //MainScreen()
             }

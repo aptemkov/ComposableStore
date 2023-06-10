@@ -1,8 +1,8 @@
 package com.github.aptemkov.onlinestore.data.api
 
 import com.github.aptemkov.onlinestore.app.BASE_URL
-import com.github.aptemkov.onlinestore.domain.models.FlashSaleItemList
-import com.github.aptemkov.onlinestore.domain.models.LatestItemList
+import com.github.aptemkov.onlinestore.data.models.FlashSaleItemList
+import com.github.aptemkov.onlinestore.data.models.LatestItemList
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Call

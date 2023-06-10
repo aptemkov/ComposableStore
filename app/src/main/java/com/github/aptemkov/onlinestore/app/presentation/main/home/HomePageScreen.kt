@@ -50,6 +50,8 @@ import com.github.aptemkov.onlinestore.app.presentation.main.DefaultTopAppBar
 import com.github.aptemkov.onlinestore.data.models.FlashSaleItem
 import com.github.aptemkov.onlinestore.data.models.LatestItem
 import com.github.aptemkov.onlinestore.app.presentation.models.categories
+import com.github.aptemkov.onlinestore.domain.models.FlashSaleItemDomain
+import com.github.aptemkov.onlinestore.domain.models.LatestItemDomain
 import com.github.aptemkov.onlinestore.ui.theme.OnlineStoreTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -112,7 +114,7 @@ fun HomePageScreen(
 
 
 @Composable
-fun FlashSaleSection(list: List<FlashSaleItem>, onViewAllClicked:() -> Unit ) {
+fun FlashSaleSection(list: List<FlashSaleItemDomain>, onViewAllClicked:() -> Unit ) {
     Column {
         Row(
             Modifier
@@ -162,7 +164,7 @@ fun FlashSaleSection(list: List<FlashSaleItem>, onViewAllClicked:() -> Unit ) {
 }
 
 @Composable
-fun LatestSection(list: List<LatestItem>, onViewAllClicked: () -> Unit) {
+fun LatestSection(list: List<LatestItemDomain>, onViewAllClicked: () -> Unit) {
     Column {
         Row(
             Modifier

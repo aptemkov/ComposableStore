@@ -4,17 +4,20 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.github.aptemkov.onlinestore.app.HOME_VIEW_MODEL
+import com.github.aptemkov.onlinestore.data.api.StoreApi
 import com.github.aptemkov.onlinestore.data.models.FlashSaleItem
 import com.github.aptemkov.onlinestore.data.models.FlashSaleItemList
 import com.github.aptemkov.onlinestore.data.models.LatestItem
 import com.github.aptemkov.onlinestore.data.models.LatestItemList
-import com.github.aptemkov.onlinestore.domain.models.FlashSaleItemListDomain
-import com.github.aptemkov.onlinestore.domain.models.LatestItemListDomain
+import com.github.aptemkov.onlinestore.domain.models.FlashSaleItemDomain
+import com.github.aptemkov.onlinestore.domain.models.LatestItemDomain
 import com.github.aptemkov.onlinestore.domain.repository.DataRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,54 +26,28 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repositoryDa: DataRepository
-): ViewModel() {
+) : ViewModel() {
 
-    private val _latest = MutableStateFlow<List<LatestItem>>(listOf(LatestItem("","","","")))
+    private val _latest = MutableStateFlow<List<LatestItemDomain>>(listOf(LatestItemDomain("", "", "", "")))
     val latest = _latest.asStateFlow()
 
-    private val _flashSale = MutableStateFlow<List<FlashSaleItem>>(listOf(FlashSaleItem("","","","0","")))
+    private val _flashSale =
+        MutableStateFlow<List<FlashSaleItemDomain>>(listOf(FlashSaleItemDomain("", "", "", "0", "")))
     val flashSale = _flashSale.asStateFlow()
 
     init {
 
-        Log.d(HOME_VIEW_MODEL,"started")
-
-        viewModelScope.launch {
-            val call = repositoryDa.getLatestList()
-            call.enqueue(object: Callback<LatestItemList> {
-
-                override fun onResponse(call: Call<LatestItemList>, response: Response<LatestItemList>) {
-                    Log.d(HOME_VIEW_MODEL,"${response.body()?.latest}")
-                    if(response.body() != null) {
-                        _latest.value = response.body()!!.latest
-                    }
-                }
-
-                override fun onFailure(call: Call<LatestItemList>, t: Throwable) {
-                    Log.d(HOME_VIEW_MODEL, "${t.message}")
-                }
-
-            })
+        viewModelScope.launch(Dispatchers.IO) {
+            val newLatestList = repositoryDa.getLatestList()
+            _latest.value = newLatestList
         }
 
-        viewModelScope.launch {
-            val call = repositoryDa.getFlashSaleList()
-            call.enqueue(object: Callback<FlashSaleItemList> {
-
-                override fun onResponse(call: Call<FlashSaleItemList>, response: Response<FlashSaleItemList>) {
-                    Log.d(HOME_VIEW_MODEL,"${response.body()?.flash_sale}")
-                    if(response.body() != null) {
-                        _flashSale.value = response.body()!!.flash_sale
-                    }
-                }
-
-                override fun onFailure(call: Call<FlashSaleItemList>, t: Throwable) {
-                    Log.d(HOME_VIEW_MODEL, "${t.message}")
-                }
-
-            })
+        viewModelScope.launch(Dispatchers.IO) {
+            val newFlashSaleList = repositoryDa.getFlashSaleList()
+            _flashSale.value = newFlashSaleList
         }
 
     }
+
 
 }

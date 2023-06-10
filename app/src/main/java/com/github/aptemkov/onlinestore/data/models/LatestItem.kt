@@ -14,11 +14,13 @@ data class LatestItemList(
     val latest: List<LatestItem>,
 )
 
-fun LatestItem.mapToDomain(): LatestItemDomain {
-    return LatestItemDomain(
-        category = this.category,
-        name = this.name,
-        price = this.price,
-        image_url = this.image_url,
-    )
+fun List<LatestItem>.asDomain(): List<LatestItemDomain> {
+    return map {
+        LatestItemDomain(
+            category = it.category,
+            name = it.name,
+            price = it.price,
+            image_url = it.image_url,
+        )
+    }
 }

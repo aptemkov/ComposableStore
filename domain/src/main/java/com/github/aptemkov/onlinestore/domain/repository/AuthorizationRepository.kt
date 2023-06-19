@@ -1,7 +1,6 @@
 package com.github.aptemkov.onlinestore.domain.repository
 
 import com.github.aptemkov.onlinestore.domain.models.Response
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow
 
@@ -14,7 +13,7 @@ typealias RevokeAccessResponse = Response<Boolean>
 typealias AuthStateResponse = StateFlow<Boolean>
 
 interface AuthorizationRepository {
-    val currentUser: FirebaseUser?
+    //val currentUser: FirebaseUser?
 
     suspend fun firebaseSignUpWithEmailAndPassword(email: String, password: String): SignUpResponse
 

@@ -114,7 +114,7 @@ fun HomePageScreen(
 
 
 @Composable
-fun FlashSaleSection(list: List<FlashSaleItemDomain>, onViewAllClicked:() -> Unit ) {
+fun FlashSaleSection(list: List<com.github.aptemkov.onlinestore.domain.models.FlashSaleItemDomain>, onViewAllClicked:() -> Unit ) {
     Column {
         Row(
             Modifier
@@ -164,7 +164,7 @@ fun FlashSaleSection(list: List<FlashSaleItemDomain>, onViewAllClicked:() -> Uni
 }
 
 @Composable
-fun LatestSection(list: List<LatestItemDomain>, onViewAllClicked: () -> Unit) {
+fun LatestSection(list: List<com.github.aptemkov.onlinestore.domain.models.LatestItemDomain>, onViewAllClicked: () -> Unit) {
     Column {
         Row(
             Modifier

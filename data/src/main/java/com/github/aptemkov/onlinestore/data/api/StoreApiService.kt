@@ -1,6 +1,5 @@
 package com.github.aptemkov.onlinestore.data.api
 
-import com.github.aptemkov.onlinestore.app.BASE_URL
 import com.github.aptemkov.onlinestore.data.models.FlashSaleItemList
 import com.github.aptemkov.onlinestore.data.models.LatestItemList
 import com.squareup.moshi.Moshi
@@ -10,6 +9,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 
+
+const val BASE_URL = "https://run.mocky.io/v3/"
 
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
@@ -36,9 +37,4 @@ interface StoreApiService {
     @GET("a9ceeb6e-416d-4352-bde6-2203416576ac")
     suspend fun getFlashSaleList(): FlashSaleItemList
 
-}
-
-
-object StoreApi {
-    val retrofitService: StoreApiService by lazy { retrofit.create(StoreApiService::class.java) }
 }

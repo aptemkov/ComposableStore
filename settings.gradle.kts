@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Online Store"
 include(":app")
- 
+include(":data")
+include(":domain")

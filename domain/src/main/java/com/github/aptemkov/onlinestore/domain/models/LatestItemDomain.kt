@@ -1,6 +1,5 @@
 package com.github.aptemkov.onlinestore.domain.models
 
-import com.github.aptemkov.onlinestore.data.models.LatestItem
 
 
 data class LatestItemDomain(
@@ -11,5 +10,5 @@ data class LatestItemDomain(
 )
 
 data class LatestItemListDomain(
-    val latest: List<LatestItem>,
+    val latest: List<LatestItemDomain>,
 )

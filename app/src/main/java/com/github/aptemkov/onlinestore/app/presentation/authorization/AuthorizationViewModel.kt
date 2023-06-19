@@ -37,7 +37,7 @@ class AuthorizationViewModel @Inject constructor(
         signUpResponse = repository.firebaseSignUpWithEmailAndPassword(email, password)
     }
 
-    fun sendEmailVerification() = viewModelScope.launch {
+    /*fun sendEmailVerification() = viewModelScope.launch {
         if(repository.currentUser?.isEmailVerified == false) {
             sendEmailVerificationResponse = Loading
             sendEmailVerificationResponse = repository.sendEmailVerification()
@@ -45,5 +45,5 @@ class AuthorizationViewModel @Inject constructor(
     }
 
     val isEmailVerified get() = repository.currentUser?.isEmailVerified ?: false
-
+*/
 }

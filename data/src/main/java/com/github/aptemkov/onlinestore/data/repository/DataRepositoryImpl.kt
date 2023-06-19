@@ -1,8 +1,6 @@
 package com.github.aptemkov.onlinestore.data.repository
 
 import android.util.Log
-import com.github.aptemkov.onlinestore.app.API
-import com.github.aptemkov.onlinestore.app.HOME_VIEW_MODEL
 import com.github.aptemkov.onlinestore.data.models.FlashSaleItemList
 import com.github.aptemkov.onlinestore.data.models.LatestItemList
 import com.github.aptemkov.onlinestore.data.api.StoreApiService
@@ -23,11 +21,11 @@ class DataRepositoryImpl @Inject constructor(
     private val apiService: StoreApiService
 ): DataRepository {
 
-    override fun getLatestCall(): Call<LatestItemList> {
+    fun getLatestCall(): Call<LatestItemList> {
         return apiService.getLatestCall()
     }
 
-    override fun getFlashSaleCall(): Call<FlashSaleItemList> {
+    fun getFlashSaleCall(): Call<FlashSaleItemList> {
         return apiService.getFlashSaleCall()
     }
 
@@ -62,3 +60,5 @@ class DataRepositoryImpl @Inject constructor(
     }
 
 }
+
+const val API = "API_LOG"

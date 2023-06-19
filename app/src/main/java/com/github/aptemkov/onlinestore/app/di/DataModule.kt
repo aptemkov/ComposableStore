@@ -5,6 +5,7 @@ import com.github.aptemkov.onlinestore.data.api.StoreApiService
 import com.github.aptemkov.onlinestore.data.repository.DataRepositoryImpl
 import com.github.aptemkov.onlinestore.domain.repository.AuthorizationRepository
 import com.github.aptemkov.onlinestore.domain.repository.DataRepository
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import dagger.Module
@@ -21,15 +22,21 @@ private const val BASE_URL = "https://run.mocky.io/v3/"
 @Module
 @InstallIn(SingletonComponent::class)
 object DataModule {
+
     @Provides
     @Singleton
-    fun provideAuthRepositoryImpl(): AuthorizationRepository {
-        return AuthorizationRepositoryImpl(Firebase.auth)
+    fun provideFirebaseAuth(): FirebaseAuth {
+        return Firebase.auth
+    }
+    @Provides
+    @Singleton
+    fun provideAuthRepositoryImpl(firebaseAuth: FirebaseAuth): AuthorizationRepository {
+        return AuthorizationRepositoryImpl(firebaseAuth)
     }
 
     @Provides
     @Singleton
-    fun provideApiService():StoreApiService {
+    fun provideApiService(): StoreApiService {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -39,7 +46,7 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideDataRepository(apiService: StoreApiService):DataRepository {
+    fun provideDataRepository(apiService: StoreApiService): DataRepository {
         return DataRepositoryImpl(apiService)
     }
 

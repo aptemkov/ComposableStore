@@ -33,7 +33,8 @@ fun ProfilePageScreenPreview() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfilePageScreen() {
-    val repo = AuthorizationRepositoryImpl(FirebaseAuth.getInstance())
+    val repo =
+        com.github.aptemkov.onlinestore.data.repository.AuthorizationRepositoryImpl(FirebaseAuth.getInstance())
 
     Scaffold(
         topBar = {

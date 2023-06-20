@@ -33,8 +33,7 @@ fun ProfilePageScreenPreview() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProfilePageScreen() {
-    val repo =
-        com.github.aptemkov.onlinestore.data.repository.AuthorizationRepositoryImpl(FirebaseAuth.getInstance())
+    val repo = AuthorizationRepositoryImpl(FirebaseAuth.getInstance())
 
     Scaffold(
         topBar = {
@@ -75,7 +74,7 @@ fun ProfilePageScreen() {
                 )
 
                 Text(
-                    text = "Satria Adhi Pradana",
+                    text = "Artyom K.",
                     color = Color(0xff3f3f3f),
                     textAlign = TextAlign.Center,
                     style = TextStyle(

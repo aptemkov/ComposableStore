@@ -68,7 +68,7 @@ fun HomePageScreen(
             Scaffold(
                 topBar = {
                     DefaultTopAppBar(
-                        label = "Trade by A",
+                        label = "",
                         showStartIcon = true,
                         startIcon = painterResource(id = R.drawable.ic_menu),
                         showEndIcon = true,
